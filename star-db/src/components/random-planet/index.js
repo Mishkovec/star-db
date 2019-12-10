@@ -1,5 +1,6 @@
 import React from 'react';
 import './random-planet.css';
+import ErrorIndicator from '../ErrorIndicator';
 import {Spin} from 'antd';
 
 import SwapiService from '../../services/swapi-service';
@@ -8,36 +9,57 @@ export default class RandomPlanet extends React.Component {
    
     state = {
         planet:{},
-        loading: true
+        loading: true,
+        error: false
     };
 
     constructor() {
         super();
         this.updatePlanet();
+        this.interval = setInterval(this.updatePlanet, 2000);
     }
 
+    // componentDidMount() {
+    //     this.updatePlanet();
+    //     this.interval = setInterval(this.updatePlanet, 2000);
+    // }
+
+    // componentWillUnMount() {
+    //     clearInterval(this.interval)
+    // }
     onPlanetLoaded = (planet) => {
         this.setState({planet, loading: false});
     }
+    onError = (err)=> {
+        this.setState({
+            error: true,
+            loading: false
+        })
+    }
 
-    updatePlanet() {
+    updatePlanet =()=> {
         const id =Math.floor(Math.random()*25) + 2;
         this.swapiService.getPlanet(id)
                 // .then((planet)=>{console.log(planet)})
-        .then(this.onPlanetLoaded);
+        .then(this.onPlanetLoaded)
+        .catch(this.onError);
     }
     
     render() {
 
-        const {planet, loading} = this.state;
+        const {planet, loading, error} = this.state;
         
-        
+        const hasdata = !(loading || error);
         return (
             <div className='random-planet jumbotron-rounded'>
                   { 
-                    !loading ?
+                    hasdata ?
                       <PlanetView planet={planet}/>
                       :null
+                  }
+                  {
+                      error ?
+                       <ErrorIndicator/> : null
                   }
                   {
                       loading ?
@@ -47,6 +69,7 @@ export default class RandomPlanet extends React.Component {
         )
     }
 };
+
 
 const PlanetView = ({planet}) => {
     const {id,name,population, rotationPeriod, diameter} = planet;

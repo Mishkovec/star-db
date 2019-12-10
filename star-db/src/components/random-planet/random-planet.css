@@ -1,5 +1,9 @@
 .random-planet {
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #303030;
+    margin: 20px auto;
     padding: 1rem;
     position: relative;
 }
@@ -8,6 +12,10 @@
     width: 150px;
     height: 150px;
     border-radius: 10px;
+    margin: 10px;
+}
+.random-planet h4 {
+    color: darkorange;
 }
 .spin {
     position: absolute!important;
