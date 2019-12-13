@@ -1,9 +1,14 @@
 import React from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import './app.css';
 import Header from '../header';
 import ItemList from '../item-list';
 import RandomPlanet from '../random-planet';
 import PersonDetails from '../person-details';
+import PeoplePage from '../../pages/peoplePage';
+import PlanetPage from '../../pages/planetPage';
+import StarshipPage from '../../pages/starshipPage';
+
 
 export default class App extends React.Component {
     state = {
@@ -19,19 +24,31 @@ export default class App extends React.Component {
     
     render() {
         return (
-            <div>
-                <Header/>
-                <RandomPlanet/>
-                
-                <div className='row mb2'>
-                    <div className='col-md-6'>
-                        <ItemList onItemSelected={this.onPersonSelected}/>
-                    </div>
-                    <div className='col-md-6'>
-                        <PersonDetails personId={this.state.selectedPerson}/>
-                    </div>
+            <Router>
+                <div>
+                    <Header/>
+                    <RandomPlanet/>
+
+                    <Route path='/people'>
+                        <PeoplePage
+                            onItemSelected={this.onPersonSelected}
+                            personId={this.state.selectedPerson}
+                        />
+                    </Route>
+                    <Route path='/planets'>
+                        <PlanetPage
+                            onItemSelected={this.onPersonSelected}
+                            personId={this.state.selectedPerson}
+                        />
+                    </Route>
+                    <Route path='/starships'>
+                        <StarshipPage
+                            onItemSelected={this.onPersonSelected}
+                            personId={this.state.selectedPerson}
+                        />    
+                    </Route>            
                 </div>
-            </div>
+            </Router>
         )
     }
 };
