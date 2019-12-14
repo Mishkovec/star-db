@@ -1,0 +1,13 @@
+import PeoplePage from './peoplePage';
+import PlanetPage from './planetPage';
+import LoginPage from './loginPage';
+import SecretPage from './secretPage';
+import StarshipPage from './starshipPage';
+
+export {
+    PeoplePage,
+    PlanetPage,
+    LoginPage,
+    SecretPage,
+    StarshipPage
+}

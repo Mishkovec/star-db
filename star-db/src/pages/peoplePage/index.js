@@ -2,17 +2,13 @@ import React from 'react';
 // import './personPage.css';
 import ItemList from '../../components/item-list';
 import PersonDetails from '../../components/person-details';
+import {withRouter} from 'react-router-dom';
 
-const PeoplePage = (props) => {
+const PeoplePage = ({history}) => {    
         return (
-            <div className='row mb2'>
-                <div className='col-md-6'>
-                    <ItemList onItemSelected={props.onItemSelected}/>
-                </div>
-                <div className='col-md-6'>
-                    <PersonDetails personId={props.personId}/>
-                </div>
-            </div>
+            <ItemList onItemSelected={(Id)=>{
+                history.push(Id)
+            }}/>
         )
 };
-export default PeoplePage;
+export default withRouter(PeoplePage);
