@@ -1,7 +1,7 @@
 import React from 'react';
-import './item-list.css';
 import SwapiService from '../../services/swapi-service';
 import {Spin} from 'antd';
+import styles from'./item-list.module.css';
 
 export default class ItemList extends React.Component {    
     state = {
@@ -22,7 +22,7 @@ export default class ItemList extends React.Component {
         return arr.map(({id,name})=>{
             return (
                 <li 
-                    className='list-group-item list'
+                    className={styles.list_item}
                     key={id}
                     onClick = {()=> this.props.onItemSelected(id)}
                 >
@@ -35,12 +35,12 @@ export default class ItemList extends React.Component {
     
     render() {
         const {itemList} = this.state;
-        // if (!itemList) {
-        //     return <Spin/>
-        // }
+        if (itemList.length==0) {
+            return <Spin/>
+        }
         const items = this.renderItem(itemList)
         return (
-            <ul className='item-list list-group'>
+            <ul className={styles.list_items}>
                 {items}
             </ul>
         )

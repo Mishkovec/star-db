@@ -1,0 +1,12 @@
+.page_wrapper {
+    display:flex;
+    flex-wrap: wrap;
+    margin: 0 20px;
+    justify-content: space-between;
+}
+.left_block {
+    width: 400px;
+}
+.right_block {
+    width: 600px;
+}

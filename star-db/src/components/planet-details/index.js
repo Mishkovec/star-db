@@ -1,5 +1,5 @@
 import React from 'react';
-// import './planet-details.css';
+import styles from './planet-details.module.css';
 import SwapiService from '../../services/swapi-service';
 
 export default class PlanetDetails extends React.Component {
@@ -39,26 +39,25 @@ export default class PlanetDetails extends React.Component {
             id, name, population, rotationPeriod, diameter
         }} = this.state;
         return (
-            <div className='person-details card'>
-                <img className='person-image'/>
-                <div className='card-body'>
+            <div className={styles.card}>
+                <div className={styles.card_body}>
                     <img
-                        className='person-image'
+                        className={styles.card_image}
                         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
                     />
-                    <div className='info-card'>
+                    <div className={styles.info_card}>
                         <h4>{name}</h4>
-                        <ul className='list-group list-group-flush'>
-                            <li className='list-group-item'>
-                                <span className='term'>Population </span>
+                        <ul className={styles.list_group}>
+                            <li className={styles.list_group_item}>
+                                <span className={styles.term}>Population </span>
                                 <span>{population}</span>                        
                             </li>
-                            <li className='list-group-item'>
-                                <span className='term'>Rotation Period </span>
+                            <li className={styles.list_group_item}>
+                                <span className={styles.term}>Rotation Period </span>
                                 <span>{rotationPeriod}</span>                        
                             </li>
-                            <li className='list-group-item'>
-                                <span className='term'>Diameter </span>
+                            <li className={styles.list_group_item}>
+                                <span className={styles.term}>Diameter </span>
                                 <span>{diameter}</span>                        
                             </li>
                         </ul>

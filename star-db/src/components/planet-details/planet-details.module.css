@@ -1,0 +1,27 @@
+.card {
+    width: 100%;
+    background: #303030; 
+}
+.card_body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.card_image {
+    margin: 10px;    
+}
+.info_card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.info_card h4{
+    color: chocolate;
+    font-size: 18px;
+}
+.list_group {
+    list-style: none;
+}
+.list_group_item {
+    padding: 5px;
+}

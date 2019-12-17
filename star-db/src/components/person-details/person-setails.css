@@ -1,5 +1,7 @@
 .person-details {
     display: flex;
+    background: #303030;
+    margin: 20px;
     padding: 1rem;
 }
 .card-body {

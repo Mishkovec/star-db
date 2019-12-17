@@ -1,18 +1,18 @@
 import React from 'react';
-// import './personPage.css';
+import styles from './planetPage.module.css';
 import ItemList from '../../components/item-list';
 import PlanetDetails from '../../components/planet-details';
 
 const PlanetPage = (props) => {
         return (
-            <div className='row mb2'>
-                <div className='col-md-6'>
+            <div className={styles.page_wrapper}>
+                <div className={styles.left_block}>
                     <ItemList 
                         onItemSelected={props.onItemSelected}
                         getData={props.getData}                    
                     />
                 </div>
-                <div className='col-md-6'>
+                <div className={styles.right_block}>
                     <PlanetDetails Id={props.Id}/>
                 </div>
             </div>

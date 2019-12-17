@@ -1,17 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import './header.css';
+import styles from './header.module.css';
 
 export default class Header extends React.Component {
     render() {
         return (
-            <div className='header d-flex'>
+            <div className={styles.header_wrapper}>
                 <h3>
                     <Link to='/'>
                         Star DB
                     </Link>
                 </h3>
-                <ul className='d-flex'>
+                <ul className={styles.header_items}>
                     <li>
                         <Link to='/people/'>People</Link>
                     </li>
