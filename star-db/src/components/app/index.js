@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import './app.css';
+import SwapiService from '../../services/swapi-service';
 import Header from '../header';
 import ItemList from '../item-list';
 import RandomPlanet from '../random-planet';
@@ -14,9 +15,13 @@ import {
 } from '../../pages';
 
 export default class App extends React.Component {
+    swapiService = new SwapiService();
+
     state = {
         showPlanet: true,
         selectedPerson: 1,
+        selectedPlanet: 1,
+        selectedStarship: 10,
         isLoggedIn: false
 
     }
@@ -31,6 +36,18 @@ export default class App extends React.Component {
         })
         console.log(this.state.selectedPerson)
     }
+    onPlanetSelected = (id) => {
+        this.setState({
+            selectedPlanet:id            
+        })
+        console.log(this.state.selectedPlanet)
+    }
+    onStarshipSelected = (id) => {
+        this.setState({
+            selectedStarship:id            
+        })
+        console.log(this.state.selectedStarship)
+    }
     
     render() {
         const {isLoggedIn} = this.state;
@@ -38,7 +55,7 @@ export default class App extends React.Component {
             <Router>
                 <div>
                     <Header/>
-                    <RandomPlanet/>
+                    {/* <RandomPlanet/> */}
 
                     <Switch>
                         <Route path='/' render={()=><h2>Welcom to StarDB</h2>} exact/>
@@ -46,6 +63,7 @@ export default class App extends React.Component {
                             <PeoplePage
                                 onItemSelected={this.onPersonSelected}
                                 personId={this.state.selectedPerson}
+                                getData={this.swapiService.getAllPeople}
                             />
                         </Route>
                         <Route path='/people/:id' render={({match, location, history})=>{
@@ -53,16 +71,18 @@ export default class App extends React.Component {
                             console.log(match, location, history);
                             return <PersonDetails personId={id}/>
                         }}/>
-                        <Route path='/planets'>
+                        <Route path='/planets/:id?'>
                             <PlanetPage
-                                onItemSelected={this.onPersonSelected}
-                                personId={this.state.selectedPerson}
+                                onItemSelected={this.onPlanetSelected}
+                                Id={this.state.selectedPlanet}
+                                getData={this.swapiService.getAllPlanets}
                             />
                         </Route>
-                        <Route path='/starships'>
+                        <Route path='/starships/:id?'>
                             <StarshipPage
-                                onItemSelected={this.onPersonSelected}
-                                personId={this.state.selectedPerson}
+                                onItemSelected={this.onStarshipSelected}
+                                Id={this.state.selectedStarship}
+                                getData={this.swapiService.getAllStarships}
                             />    
                         </Route>  
                         <Route path='/login' render = {()=>

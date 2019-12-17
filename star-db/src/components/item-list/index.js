@@ -1,20 +1,19 @@
 import React from 'react';
 import './item-list.css';
 import SwapiService from '../../services/swapi-service';
+import {Spin} from 'antd';
 
-export default class ItemList extends React.Component {
-    swapiService = new SwapiService();
-    
+export default class ItemList extends React.Component {    
     state = {
-        peopleList: []
+        itemList: []
     };
 
     componentDidMount() {
-        this.swapiService
-        .getAllPeople()
-        .then((peopleList)=>{
+        const {getData}= this.props;
+        getData()
+        .then((itemList)=>{
             this.setState({
-                peopleList
+                itemList
             });
         });
     }
@@ -35,11 +34,11 @@ export default class ItemList extends React.Component {
 
     
     render() {
-        const {peopleList} = this.state;
-        // if (!peopleList) {
+        const {itemList} = this.state;
+        // if (!itemList) {
         //     return <Spin/>
         // }
-        const items = this.renderItem(peopleList)
+        const items = this.renderItem(itemList)
         return (
             <ul className='item-list list-group'>
                 {items}

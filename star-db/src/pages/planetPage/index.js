@@ -1,17 +1,19 @@
 import React from 'react';
 // import './personPage.css';
 import ItemList from '../../components/item-list';
-import PersonDetails from '../../components/person-details';
+import PlanetDetails from '../../components/planet-details';
 
 const PlanetPage = (props) => {
         return (
             <div className='row mb2'>
-                PlanetPage
                 <div className='col-md-6'>
-                    <ItemList onItemSelected={props.onItemSelected}/>
+                    <ItemList 
+                        onItemSelected={props.onItemSelected}
+                        getData={props.getData}                    
+                    />
                 </div>
                 <div className='col-md-6'>
-                    <PersonDetails personId={props.personId}/>
+                    <PlanetDetails Id={props.Id}/>
                 </div>
             </div>
         )
