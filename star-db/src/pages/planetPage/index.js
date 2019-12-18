@@ -1,21 +1,19 @@
 import React from 'react';
-import styles from './planetPage.module.css';
 import ItemList from '../../components/item-list';
 import PlanetDetails from '../../components/planet-details';
+import PageLayout from '../pageLayout';
 
 const PlanetPage = (props) => {
         return (
-            <div className={styles.page_wrapper}>
-                <div className={styles.left_block}>
+            <PageLayout
+                left={
                     <ItemList 
                         onItemSelected={props.onItemSelected}
                         getData={props.getData}                    
                     />
-                </div>
-                <div className={styles.right_block}>
-                    <PlanetDetails Id={props.Id}/>
-                </div>
-            </div>
+                }
+                right={<PlanetDetails Id={props.Id}/>}
+            />
         )
 };
 export default PlanetPage;
