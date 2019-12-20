@@ -5,8 +5,9 @@
     justify-content: space-between;
 }
 .left_block {
-    width: 400px;
+    flex-grow: 1;
+    margin-right: 50px;
 }
 .right_block {
-    width: 600px;
+    flex-grow: 1;
 }

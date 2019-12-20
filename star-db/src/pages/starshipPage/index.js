@@ -17,7 +17,7 @@ const StarshipPage = (props) => {
                 right={
                     <ItemDetails
                         id={props.Id}
-                        getData={props.getData}
+                        getData={props.getStarship}
                         getImage={props.getImage}
                     >
                         <ItemPoint label={'Model'} value={'model'}/>

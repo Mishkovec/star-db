@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './itemDetails.module.css';
+import {Spin} from 'antd';
 
 const ItemPoint = ({item, label, value}) => {
     return (
@@ -45,8 +46,11 @@ export default class ItemDetails extends React.Component {
         if (!this.state.item) {
             return <span>Select a position from the list</span>
         }
+        if (item.length==0) {
+            return <Spin/>
+        }
 
-        const {name, gender, birthYear, eyeColor} = item;
+        const {name} = item;
         return (
             <div className={styles.card}>
                 <div className={styles.card_body}>

@@ -22,9 +22,9 @@ export default class App extends React.Component {
 
     state = {
         showPlanet: true,
-        selectedPerson: 1,
-        selectedPlanet: 3,
-        selectedStarship: 1,
+        selectedPerson: null,
+        selectedPlanet: null,
+        selectedStarship: null,
         isLoggedIn: false
 
     }
@@ -58,7 +58,7 @@ export default class App extends React.Component {
             <Router>
                 <div>
                     <Header/>
-                    {/* <RandomPlanet/> */}
+                    <RandomPlanet/>
 
                     <Switch>
                         <Route path='/' render={()=><h2>Welcom to StarDB</h2>} exact/>
@@ -68,46 +68,28 @@ export default class App extends React.Component {
                                 personId={this.state.selectedPerson}
                                 getData={this.swapiService.getAllPeople}
                             />
-                            {/* <PageLayout
-                                left={
-                                    <ItemDetails
-                                        id={1} 
-                                        getData={this.swapiService.getAllPeople}
-                                        getImage={this.swapiService.getPersonImage}
-                                    >
-                                        <ItemPoint label={'Gender'} value={'gender'}/>
-                                        <ItemPoint label={'Birth Year'} value={'birthYear'}/>
-                                        <ItemPoint label={'Eye Color'} value={'eyeColor'}/>
-                                    </ItemDetails>
-                                
-                                }
-                                right={
-                                    <ItemDetails
-                                        id={5}
-                                        getData={this.swapiService.getAllStarships}
-                                        getImage={this.swapiService.getStarshipImage}
-                                    >
-                                        <ItemPoint label={'Model'} value={'model'}/>
-                                        <ItemPoint label={'Manufacturer'} value={'manufacturer'}/>
-                                        <ItemPoint label={'Cost in Credits'} value={'costInCredits'}/>
-                                        <ItemPoint label={'Length'} value={'length'}/>
-                                        <ItemPoint label={'Crew'} value={'crew'}/>
-                                        <ItemPoint label={'Passengers'} value={'passenders'}/>
-                                        <ItemPoint label={'Cargo Capacity'} value={'cargoCapacity'}/>
-                                    </ItemDetails>
-                                }
-                            /> */}
                         </Route>
                         <Route path='/people/:id' render={({match, location, history})=>{
                             const {id} = match.params;
                             console.log(match, location, history);
-                            return <PersonDetails personId={id}/>
+                            return (
+                                <ItemDetails
+                                    id={id} 
+                                    getData={this.swapiService.getPerson}
+                                    getImage={this.swapiService.getPersonImage}
+                                >
+                                    <ItemPoint label={'Gender'} value={'gender'}/>
+                                    <ItemPoint label={'Birth Year'} value={'birthYear'}/>
+                                    <ItemPoint label={'Eye Color'} value={'eyeColor'}/>
+                                </ItemDetails>)
                         }}/>
                         <Route path='/planets/:id?'>
                             <PlanetPage
                                 onItemSelected={this.onPlanetSelected}
                                 Id={this.state.selectedPlanet}
                                 getData={this.swapiService.getAllPlanets}
+                                getPlanet={this.swapiService.getPlanet}
+                                getImage={this.swapiService.getPlanetImage}
                             />
                         </Route>
                         <Route path='/starships/:id?'>
@@ -115,8 +97,8 @@ export default class App extends React.Component {
                                 onItemSelected={this.onStarshipSelected}
                                 Id={this.state.selectedStarship}
                                 getData={this.swapiService.getAllStarships}
+                                getStarship={this.swapiService.getStarship}
                                 getImage={this.swapiService.getStarshipImage}
-
                             />    
                         </Route>  
                         <Route path='/login' render = {()=>

@@ -1,7 +1,7 @@
 import React from 'react';
-import './random-planet.css';
 import ErrorIndicator from '../ErrorIndicator';
 import {Spin} from 'antd';
+import styles from './random-planet.module.css';
 
 import SwapiService from '../../services/swapi-service';
 export default class RandomPlanet extends React.Component {
@@ -51,7 +51,7 @@ export default class RandomPlanet extends React.Component {
         
         const hasdata = !(loading || error);
         return (
-            <div className='random-planet jumbotron-rounded'>
+            <div className={styles.random_planet}>
                   { 
                     hasdata ?
                       <PlanetView planet={planet}/>
@@ -63,7 +63,7 @@ export default class RandomPlanet extends React.Component {
                   }
                   {
                       loading ?
-                      <Spin className={'spin'}/> : null
+                      <Spin className={styles.spin}/> : null
                   }        
             </div>
         )
@@ -75,27 +75,29 @@ const PlanetView = ({planet}) => {
     const {id,name,population, rotationPeriod, diameter} = planet;
     return (
         <React.Fragment>
+            <div className={styles.planet_info}>
             <img 
-                    className='planet-image' 
+                    className={styles.planet_image} 
                     src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
                 />
                 <div>
                     <h4>{name}</h4>
-                    <ul className='list-group list-group-flush'>
-                        <li className='list-group-item'>
-                            <span className='term'>Population </span>
+                    <ul className={styles.list_group}>
+                        <li className={styles.list_group_item}>
+                            <span className={styles.term}>Population </span>
                             <span>{population}</span>
                         </li>
-                        <li className='list-group-item'>
-                            <span className='term'>Rotation Period </span>
+                        <li className={styles.list_group_item}>
+                            <span className={styles.term}>Rotation Period </span>
                             <span>{rotationPeriod}</span>
                         </li>
-                        <li className='list-group-item'>
-                            <span className='term'>Diameter </span>
+                        <li className={styles.list_group_item}>
+                            <span className={styles.term}>Diameter </span>
                             <span>{diameter}</span>
                         </li>
                     </ul>
-                </div>      
+                </div>  
+            </div>    
         </React.Fragment>
     )
 }

@@ -1,26 +1,32 @@
-.random-planet {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+.random_planet {
+    /* display: flex;     */
     background: #303030;
-    margin: 20px;
+    margin: 40px;
     padding: 1rem;
     position: relative;
 }
-
-.random-planet .planet-image {
+.planet_info {
+    text-align: center;
+}
+.planet_image {
     width: 150px;
     height: 150px;
     border-radius: 10px;
     margin: 10px;
 }
-.random-planet h4 {
+.random_planet h4 {
+    font-size: 22px;
+    font-weight: bold;
     color: darkorange;
 }
 .spin {
     position: absolute!important;
     top: 50%;
     left: 50%;    
+}
+.list_group {
+    list-style: none;
+    margin-left: -20px;
 }
 .ant-spin-dot-item {
     background: lightgrey!important;
